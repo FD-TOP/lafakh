@@ -1,0 +1,17 @@
+# Fichiers de configuration sensibles
+db.php
+
+# Uploads utilisateurs (trop lourds pour Git)
+uploads/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Éditeurs
+.vscode/
+.idea/
