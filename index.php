@@ -223,6 +223,7 @@ $site_name = "LA FAKH";
             <video class="w-full h-full object-cover" autoplay muted playsinline onended="nextSlide()">
                 <source src="logofakh.mp4" type="video/mp4">
             </video>
+            <div class="absolute inset-0" style="background:url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1920') center/cover no-repeat;z-index:-1;"></div>
         </div>
 
         <div class="slide" data-index="2">
@@ -230,6 +231,7 @@ $site_name = "LA FAKH";
             <video class="w-full h-full object-cover" muted playsinline onended="nextSlide()">
                 <source src="Ve1.mp4" type="video/mp4">
             </video>
+            <div class="absolute inset-0" style="background:url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1920') center/cover no-repeat;z-index:-1;"></div>
             <div class="absolute inset-0 flex flex-col items-center justify-center z-20 text-center px-6">
                 <h2 class="text-5xl md:text-[100px] font-black brutal-text mb-8 slide-text">CRÉATIVITÉ <br> PURE.</h2>
                 <div class="slide-btn">
@@ -243,6 +245,7 @@ $site_name = "LA FAKH";
             <video class="w-full h-full object-cover" muted playsinline onended="nextSlide()">
                 <source src="Ve2.mp4" type="video/mp4">
             </video>
+            <div class="absolute inset-0" style="background:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1920') center/cover no-repeat;z-index:-1;"></div>
             <div class="absolute inset-0 flex flex-col items-center justify-center z-20 text-center px-6">
                 <h2 class="text-5xl md:text-[100px] font-black brutal-text mb-8 slide-text">VOS <br> PRESETS.</h2>
                 <div class="slide-btn">
@@ -256,6 +259,7 @@ $site_name = "LA FAKH";
             <video class="w-full h-full object-cover" muted playsinline onended="nextSlide()">
                 <source src="Ve3.mp4" type="video/mp4">
             </video>
+            <div class="absolute inset-0" style="background:url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1920') center/cover no-repeat;z-index:-1;"></div>
             <div class="absolute inset-0 flex flex-col items-center justify-center z-20 text-center px-6">
                 <h2 class="text-5xl md:text-[100px] font-black brutal-text mb-8 slide-text">PARLONS <br> PROJET.</h2>
                 <div class="slide-btn">
