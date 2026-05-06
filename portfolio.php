@@ -1,11 +1,30 @@
 <?php 
-require 'db.php'; 
+require 'db.php';
+$projects = [];
 try {
-    $query = $pdo->query("SELECT * FROM projects ORDER BY created_at DESC");
-    $projects = $query->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
+    if ($pdo) {
+        $query = $pdo->query("SELECT * FROM projects ORDER BY created_at DESC");
+        $projects = $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+} catch (\Throwable $e) {
     $projects = [];
 }
+
+$demo_projects = [
+    ['id'=>1,'title'=>'REEL 2026','category'=>'Showreel','thumbnail_path'=>'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800','media_path'=>'','external_link'=>''],
+    ['id'=>2,'title'=>'URBAN CULTURE','category'=>'Vlog','thumbnail_path'=>'https://images.unsplash.com/photo-1444723121867-7a241cacace9?q=80&w=800','media_path'=>'','external_link'=>''],
+    ['id'=>3,'title'=>'GOLDEN HOUR','category'=>'Cinéma','thumbnail_path'=>'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=800','media_path'=>'','external_link'=>''],
+    ['id'=>4,'title'=>'TRAVEL DOCUMENTARY','category'=>'Documentaire','thumbnail_path'=>'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800','media_path'=>'','external_link'=>''],
+    ['id'=>5,'title'=>'BRAND CAMPAIGN','category'=>'Publicité','thumbnail_path'=>'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?q=80&w=800','media_path'=>'','external_link'=>''],
+    ['id'=>6,'title'=>'NEON PORTRAITS','category'=>'Portrait','thumbnail_path'=>'https://images.unsplash.com/photo-1514565131-fce0801e6175?q=80&w=800','media_path'=>'','external_link'=>''],
+    ['id'=>7,'title'=>'DESERT ROAD TRIP','category'=>'Vlog','thumbnail_path'=>'https://images.unsplash.com/photo-1509316785289-025f5b846b35?q=80&w=800','media_path'=>'','external_link'=>''],
+    ['id'=>8,'title'=>'MONOCHROME CITY','category'=>'Cinéma','thumbnail_path'=>'https://images.unsplash.com/photo-1500281781950-6cd80847ebcd?q=80&w=800','media_path'=>'','external_link'=>''],
+    ['id'=>9,'title'=>'MUSIC VIDEO','category'=>'Clip','thumbnail_path'=>'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=800','media_path'=>'','external_link'=>''],
+    ['id'=>10,'title'=>'LIFESTYLE SERIES','category'=>'Vlog','thumbnail_path'=>'https://images.unsplash.com/photo-1682687982501-1e58ab814714?q=80&w=800','media_path'=>'','external_link'=>''],
+    ['id'=>11,'title'=>'FILM EMULATION','category'=>'Cinéma','thumbnail_path'=>'https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=800','media_path'=>'','external_link'=>''],
+    ['id'=>12,'title'=>'CORPORATE REIMS','category'=>'Institutionnel','thumbnail_path'=>'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=800','media_path'=>'','external_link'=>''],
+];
+$projects = !empty($projects) ? $projects : $demo_projects;
 ?>
 <!DOCTYPE html>
 <html lang="fr">

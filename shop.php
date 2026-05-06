@@ -1,9 +1,12 @@
 <?php 
 require 'db.php'; 
+$products = [];
 try {
-    $query = $pdo->query("SELECT * FROM products ORDER BY id DESC");
-    $products = $query->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
+    if ($pdo) {
+        $query = $pdo->query("SELECT * FROM products ORDER BY id DESC");
+        $products = $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+} catch (\Throwable $e) {
     $products = [];
 }
 $demo_products = [
