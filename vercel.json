@@ -1,0 +1,17 @@
+{
+  "functions": {
+    "*.php": {
+      "runtime": "vercel-php@0.7.2"
+    }
+  },
+  "routes": [
+    { "src": "/",              "dest": "/index.php"    },
+    { "src": "/portfolio",     "dest": "/portfolio.php" },
+    { "src": "/shop",          "dest": "/shop.php"      },
+    { "src": "/contact",       "dest": "/contact.php"   },
+    { "src": "/a-propos",      "dest": "/a-propos.php"  },
+    { "src": "/mentions-legales", "dest": "/mentions-legales.php" },
+    { "src": "/(.*\\.php)",    "dest": "/$1"            },
+    { "src": "/(.*)",          "dest": "/$1"            }
+  ]
+}

@@ -1,5 +1,4 @@
-# Fichiers de configuration sensibles
-db.php
+# Fichiers de configuration sensibles (db.php est maintenant safe via env vars)
 
 # Uploads utilisateurs (trop lourds pour Git)
 uploads/
