@@ -2,10 +2,11 @@
   "version": 2,
   "builds": [
     { "src": "*.php", "use": "vercel-php@0.7.2" },
+    { "src": "*.mp4", "use": "@vercel/static" },
     { "src": "logo.png", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/(.*\\.(png|jpg|jpeg|gif|svg|ico|webp|css|js|woff|woff2|ttf|eot))", "dest": "/$1" },
+    { "src": "/(.*\\.(mp4|png|jpg|jpeg|gif|svg|ico|webp|css|js|woff|woff2|ttf|eot))", "dest": "/$1" },
     { "src": "/",                 "dest": "/index.php"            },
     { "src": "/portfolio",        "dest": "/portfolio.php"         },
     { "src": "/shop",             "dest": "/shop.php"              },
