@@ -168,45 +168,60 @@ $pending_comment = count(array_filter($comments, fn($c) => !$c['approved']));
         <!-- Formulaire ajout -->
         <div class="panel p-6 md:p-8 mb-8">
             <h2 class="text-sm font-black uppercase tracking-widest mb-6 flex items-center gap-3">
-                <i class="fas fa-plus-circle opacity-50"></i> Ajouter un projet
+                <i class="fas fa-plus-circle opacity-50"></i> Nouveau projet
             </h2>
             <form action="save_project.php" method="POST" enctype="multipart/form-data">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <!-- Titre + Catégorie -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
                     <div class="md:col-span-2">
-                        <label class="text-[9px] uppercase text-zinc-500 font-bold block mb-1.5">Titre du projet *</label>
-                        <input type="text" name="title" required placeholder="ex: REEL SUMMER 2026" class="w-full p-3 text-sm rounded">
+                        <label class="text-[9px] uppercase text-zinc-500 font-bold block mb-1.5">Titre *</label>
+                        <input type="text" name="title" required placeholder="REEL SUMMER 2026" class="w-full p-3 text-sm rounded">
                     </div>
                     <div>
                         <label class="text-[9px] uppercase text-zinc-500 font-bold block mb-1.5">Catégorie</label>
-                        <input type="text" name="category" placeholder="Vlog, Cinéma, Clip..." class="w-full p-3 text-sm rounded">
-                    </div>
-                    <div>
-                        <label class="text-[9px] uppercase text-zinc-500 font-bold block mb-1.5">Type de média *</label>
-                        <select name="media_type" class="w-full p-3 text-sm rounded">
-                            <option value="photo">Photo / Image</option>
-                            <option value="video">Vidéo (YouTube / MP4)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="text-[9px] uppercase text-zinc-500 font-bold block mb-1.5">Lien vidéo (YouTube embed)</label>
-                        <input type="url" name="video_embed" placeholder="https://www.youtube.com/embed/ID" class="w-full p-3 text-sm rounded">
-                    </div>
-                    <div>
-                        <label class="text-[9px] uppercase text-zinc-500 font-bold block mb-1.5">Lien externe (optionnel)</label>
-                        <input type="url" name="external_link" placeholder="https://youtube.com/watch?v=..." class="w-full p-3 text-sm rounded">
+                        <input type="text" name="category" placeholder="Vlog, Cinéma, Clip…" class="w-full p-3 text-sm rounded">
                     </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <div>
-                        <label class="text-[9px] uppercase font-black block mb-1.5">Photo de couverture *</label>
-                        <input type="file" name="thumbnail_file" required accept="image/*" class="w-full text-xs text-zinc-400 file:mr-3 file:py-2 file:px-4 file:border-0 file:bg-white file:text-black file:font-bold file:text-xs file:cursor-pointer">
-                    </div>
-                    <div>
-                        <label class="text-[9px] uppercase text-zinc-500 font-bold block mb-1.5">Médias supplémentaires (optionnel)</label>
-                        <input type="file" name="media_files[]" multiple accept="image/*,video/mp4" class="w-full text-xs text-zinc-400 file:mr-3 file:py-2 file:px-4 file:border-0 file:bg-zinc-800 file:text-white file:font-bold file:text-xs file:cursor-pointer">
+
+                <!-- Couverture -->
+                <div class="mb-5">
+                    <label class="text-[9px] uppercase font-black block mb-1.5">Photo de couverture *</label>
+                    <input type="file" name="thumbnail_file" required accept="image/*"
+                           class="w-full text-xs text-zinc-400 file:mr-3 file:py-2 file:px-4 file:border-0 file:bg-white file:text-black file:font-bold file:cursor-pointer">
+                    <p class="text-[8px] text-zinc-600 mt-1">La miniature affichée sur la grille du portfolio.</p>
+                </div>
+
+                <!-- Séparateur -->
+                <div class="flex items-center gap-3 my-5">
+                    <div class="h-px flex-1 bg-white/5"></div>
+                    <span class="text-[8px] font-black uppercase tracking-widest text-zinc-600">Médias du projet (photos + vidéos mélangés)</span>
+                    <div class="h-px flex-1 bg-white/5"></div>
+                </div>
+
+                <!-- Liens YouTube (dynamiques) -->
+                <div class="mb-5">
+                    <label class="text-[9px] uppercase text-zinc-500 font-bold block mb-2">
+                        <i class="fab fa-youtube mr-1"></i> Liens YouTube / Vimeo (un par ligne)
+                    </label>
+                    <div id="yt-rows" class="space-y-2">
+                        <div class="flex gap-2 yt-row">
+                            <input type="url" name="yt_links[]" placeholder="https://youtu.be/XXXXXXXXXXX" class="flex-1 p-3 text-sm rounded">
+                            <button type="button" onclick="addYtRow()" class="px-4 py-2 border border-white/15 text-[10px] font-bold hover:bg-white hover:text-black transition">+ Ajouter</button>
+                        </div>
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-white text-black font-black uppercase text-[10px] tracking-widest py-3.5 hover:bg-zinc-200 transition">
+
+                <!-- Photos / vidéos MP4 -->
+                <div class="mb-5">
+                    <label class="text-[9px] uppercase text-zinc-500 font-bold block mb-1.5">
+                        <i class="fas fa-upload mr-1"></i> Photos & vidéos (fichiers, sélection multiple)
+                    </label>
+                    <input type="file" name="media_files[]" multiple accept="image/*,video/mp4"
+                           class="w-full text-xs text-zinc-400 file:mr-3 file:py-2 file:px-4 file:border-0 file:bg-zinc-800 file:text-white file:font-bold file:cursor-pointer">
+                    <p class="text-[8px] text-zinc-600 mt-1">Glisse plusieurs fichiers d'un coup. Les .mp4 sont traités comme vidéos, le reste comme photos.</p>
+                </div>
+
+                <button type="submit" class="w-full bg-white text-black font-black uppercase text-[10px] tracking-widest py-3.5 hover:bg-zinc-200 transition mt-2">
                     <i class="fas fa-cloud-upload-alt mr-2"></i> Publier le projet
                 </button>
             </form>
@@ -435,6 +450,16 @@ $pending_comment = count(array_filter($comments, fn($c) => !$c['approved']));
 </main>
 
 <script>
+// YouTube rows
+function addYtRow(){
+    const wrap = document.getElementById('yt-rows');
+    const div  = document.createElement('div');
+    div.className = 'flex gap-2 yt-row';
+    div.innerHTML = `<input type="url" name="yt_links[]" placeholder="https://youtu.be/XXXXXXXXXXX" class="flex-1 p-3 text-sm" style="background:#0d0d0d;border:1px solid #1c1c1c;color:#fff;outline:none">
+        <button type="button" onclick="this.parentElement.remove()" class="px-4 py-2 border text-[10px] font-bold" style="border-color:rgba(239,68,68,.3);color:rgba(239,68,68,.6)">✕</button>`;
+    wrap.appendChild(div);
+}
+
 function switchTab(name) {
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
