@@ -111,23 +111,25 @@ $site_name = "LA FAKH";
         /* COUNTER */
         #slide-counter { position: fixed; bottom: 56px; right: 28px; z-index: 120; font-size: 9px; font-weight: 900; font-family:'Inter'; color:rgba(255,255,255,.3); letter-spacing:.15em; }
 
-        /* SLIDE TYPE TAG (photo / video) */
-        .type-tag {
-            position: fixed; top: 50%; right: 28px; transform: translateY(-50%);
-            z-index: 120; writing-mode: vertical-lr;
-            font-size: 7px; font-weight: 900; text-transform: uppercase;
-            letter-spacing: .3em; color: rgba(255,255,255,.2);
-            font-family: 'Inter'; display: flex; flex-direction: column;
-            align-items: center; gap: 8px;
-        }
-        .type-icon { font-size: 14px; color: rgba(255,255,255,.25); transition: color .4s; }
-        .type-icon.active-icon { color: rgba(255,255,255,.8); }
+        /* SLIDE TYPE TAG — masqué */
+        .type-tag { display: none !important; }
 
-        /* SOCIAL */
+        /* SOCIAL — desktop sidebar verticale */
         .social-sidebar { position:fixed; left:22px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:100px; z-index:50; }
         .social-block { display:flex; align-items:center; gap:12px; transform:rotate(-90deg); transform-origin:left center; white-space:nowrap; }
         .social-name { font-size:.65rem; text-transform:lowercase; letter-spacing:.2em; color:rgba(255,255,255,.3); transition:color .3s; }
         .social-block:hover .social-name { color:#fff; }
+
+        /* SOCIAL — mobile barre horizontale en bas */
+        @media (max-width: 767px) {
+            .social-sidebar { display: none !important; }
+            #social-mobile { display: flex !important; }
+        }
+        #social-mobile {
+            display: none;
+            position: fixed; bottom: 56px; left: 50%; transform: translateX(-50%);
+            z-index: 120; gap: 24px; align-items: center;
+        }
 
         /* ARROWS */
         .nav-arrow {
@@ -190,10 +192,17 @@ $site_name = "LA FAKH";
     </div>
 
     <!-- SOCIAL -->
-    <div class="social-sidebar hidden md:flex">
+    <div class="social-sidebar flex">
         <div class="social-block"><a href="#" class="pointer-events-auto"><i class="fab fa-tiktok text-white/40 hover:text-white transition"></i></a><span class="social-name">tiktok</span></div>
         <div class="social-block"><a href="#" class="pointer-events-auto"><i class="fab fa-instagram text-white/40 hover:text-white transition"></i></a><span class="social-name">instagram</span></div>
         <div class="social-block"><a href="#" class="pointer-events-auto"><i class="fab fa-vimeo-v text-white/40 hover:text-white transition"></i></a><span class="social-name">vimeo</span></div>
+    </div>
+
+    <!-- SOCIAL MOBILE -->
+    <div id="social-mobile">
+        <a href="#" class="pointer-events-auto text-white/50 hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+        <a href="#" class="pointer-events-auto text-white/50 hover:text-white transition"><i class="fab fa-tiktok text-xl"></i></a>
+        <a href="#" class="pointer-events-auto text-white/50 hover:text-white transition"><i class="fab fa-vimeo-v text-xl"></i></a>
     </div>
 
     <!-- ARROWS -->
